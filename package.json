@@ -1,0 +1,11 @@
+{
+  "name": "ecommerce-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend"
+  ],
+  "dependencies": {
+    "scheduler": "^0.26.0"
+  }
+}
