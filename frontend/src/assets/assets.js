@@ -96,8 +96,8 @@ export const assets = {
 export const products = [
     {
         _id: "aaaaa",
-        name: "Women Round Neck Cotton Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Classic Cotton Essential Tee",
+        description: "Crafted from premium 100% organic cotton, this essential tee offers unmatched comfort and style. Perfect for layering or wearing solo, it features a flattering fit and soft hand-feel that gets better with every wash.",
         price: 100,
         image: [p_img1],
         category: "Women",
@@ -108,8 +108,8 @@ export const products = [
     },
     {
         _id: "aaaab",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Premium Cotton Crew Neck Tee",
+        description: "Experience ultimate comfort with our signature crew neck tee. Made from the finest combed cotton, this versatile piece features a relaxed fit and superior durability. Perfect for everyday wear or casual outings.",
         price: 200,
         image: [p_img2_1,p_img2_2,p_img2_3,p_img2_4],
         category: "Men",
@@ -120,8 +120,8 @@ export const products = [
     },
     {
         _id: "aaaac",
-        name: "Girls Round Neck Cotton Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        name: "Kids Comfort Cotton Top",
+        description: "Designed with kids' active lifestyle in mind, this soft cotton top provides all-day comfort and freedom of movement. Gentle on sensitive skin and easy to care for, it's perfect for playtime and everyday adventures.",
         price: 220,
         image: [p_img3],
         category: "Kids",

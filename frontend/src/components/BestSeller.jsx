@@ -16,7 +16,7 @@ export const BestSeller = () => {
             <div className="text-center text-3xl py-8">
                 <Title text1={'BEST'} text2={'SELLERS'} />
                 <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-                    This is simply a dummy text of printing and type setting industry
+                    Discover our most loved pieces that customers can't get enough of. These bestsellers combine exceptional quality, timeless style, and unbeatable comfort.
                 </p>
 
             </div>

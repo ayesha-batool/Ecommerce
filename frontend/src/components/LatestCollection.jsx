@@ -10,7 +10,7 @@ export const LatestCollection = () => {
         <div className='my-10'>
             <div className='text-center py-8 text-3xl'>
                 <Title text1={'LATEST'} text2={'COLLECTION'} />
-                <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">This is just simply a dummy text of printing and typesetting industry</p>
+                <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">Explore our newest arrivals featuring the latest trends and fresh styles. Each piece is carefully curated to bring you the most current fashion forward designs.</p>
             </div>
             {/* rendering products */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
