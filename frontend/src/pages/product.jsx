@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, use } from 'react'
 import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
@@ -8,27 +8,39 @@ export const Product = () => {
   const { products, currency,addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
-
+const [size, setSize] = useState('');
   const fetchProductData = async () => {
-    const product = products.find(item => item.id === parseInt(productId));
+    const product = products.find(item => item._id === productId);
+    console.log("product",product)
     setProductData(product);
   }
-
+  useEffect(() => {
+    if (productData && productData.image && productData.image.length > 0) {
+      setImage(productData.image[0]);
+    }
+  }, [productData]); 
+   
+  
+  useEffect(() => {
+    console.log("image",image,size)
+  }, [image,size]);
+  
   useEffect(() => {
     fetchProductData();
-  }, [productId, products]);
+  }, [productId,products]);
   return productData ? (
+    
     <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
         <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
-
           <div className='flex sm:flex-col w-full sm:w-[18.7%] sm:justify-normal justify-between sm:overflow-y-scroll overflow-x-auto'>
-            {productData.images.map((img, index) => (
-              <img onClick={() => setImage(img)} key={index} src={img} alt={productData.name} className='w-24 sm:w-full h-24 object-cover border cursor-pointer hover:opacity-75' />
-            ))}
+            {productData.image && productData.image.map((img, index) => (
+              <img onClick={() => setImage(img)} key={index} src={img?img:'assets/placeholder.png'} alt={productData.name} className=' w-24 sm:w-full h-24 object-cover border cursor-pointer hover:opacity-75' />
+           
+           ))}
           </div>
           <div className="w-full sm:w-[80%]">
-            <img src={image} className='w-full h-auto' alt="" />
+            <img src={image?image:'assets/placeholder.png'} className='w-full h-auto' alt="" />
           </div>
         </div>
         <div className='flex-1'>
@@ -46,9 +58,9 @@ export const Product = () => {
           <p>{productData.description}</p>
           <div>
             <p>Select Size</p>
-            <div className='flex gap-3 mt-2'>
-              {productData.size.map((size, index) => (
-                <button key={index} className='border border-gray-400 w-10 h-10 flex items-center justify-center cursor-pointer hover:opacity-75'>{size}</button>
+            <div className='flex gap-3 my-2'>
+              {productData.sizes && productData.sizes.map((s, index) => (
+                <button onClick={()=>setSize(s)} key={index} className={`border border-gray-400 w-10 h-10 flex items-center justify-center cursor-pointer hover:opacity-75 ${size === s ? 'bg-black text-white' : ''}`}>{s}</button>
               ))}
             </div>
           </div>
@@ -66,7 +78,7 @@ export const Product = () => {
         </div>
       </div>
       <div className='mt-20'>
-        <div className="flex">
+        <div className="flex justify-between">
           <b>Description</b>
           <p>Reviews (122)</p>
         </div>

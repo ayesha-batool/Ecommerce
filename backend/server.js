@@ -1,13 +1,36 @@
+
 import express from 'express'
 import cors from 'cors'
-import 'dotenv/config'
+import dotenv from 'dotenv'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// Load .env file from the backend directory
+dotenv.config({ path: path.join(__dirname, '.env') })
+import fs from "fs";
+
+const envPath = path.join(__dirname, ".env");
+console.log("Looking for .env at:", envPath);
+console.log("File exists?", fs.existsSync(envPath));
+console.log("Raw .env content:\n", fs.readFileSync(envPath, "utf-8"));
+console.log("PORT:", process.env.PORT);
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
+console.log("MONGODB_URI:", process.env.MONGODB_URI);
+console.log("CLOUDINARY_NAME:", process.env.CLOUDINARY_NAME);
+console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY);
+
 import userRouter from './src/routes/userRoute.js'
 import connectDB from './src/config/mongodb.js'
 import connectCloudinary from './src/config/cloudinary.js'
 import productRouter from './src/routes/productRoute.js'
+import cartRouter from './src/routes/cartRoute.js'
+import orderRouter from './src/routes/orderRoute.js'
 
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 5000
 
 // Connect DB + Cloudinary
 connectDB()
@@ -30,6 +53,9 @@ app.use(express.json())
 // Routers
 app.use("/api/user", userRouter)
 app.use("/api/product", productRouter)
+app.use("/api/cart", cartRouter)
+app.use("/api/order", orderRouter)
+
 
 // Test routes
 app.get('/', (req, res) => {
@@ -49,4 +75,4 @@ app.use((error, req, res, next) => {
 })
 
 // Start server
-app.listen(port, () => console.log("Server started on port", port))
+app.listen(port, () => console.log("Serer started on port", port))

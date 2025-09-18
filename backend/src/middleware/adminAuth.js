@@ -7,7 +7,7 @@ const adminAuth = async (req, res, next) => {
         // Check if authorization header exists
         if (!req.headers.authorization) {
             console.log("No authorization header provided");
-            return res.status(401).json({ success: false, message: "No authorization header provided" });
+            return res.status(401).json({ success: false, message: "No authorizaion header provided" });
         }
 
         // Extract token from "Bearer <token>"

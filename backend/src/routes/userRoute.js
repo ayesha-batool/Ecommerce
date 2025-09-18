@@ -5,7 +5,7 @@ import upload from "../middleware/multer.js";
 const userRouter = express.Router();
 
 userRouter.post("/register", registerUser);
-userRouter.get("/login", loginUser);
+userRouter.post("/login", loginUser);
 userRouter.post("/admin", adminLogin);
 
 export default userRouter;

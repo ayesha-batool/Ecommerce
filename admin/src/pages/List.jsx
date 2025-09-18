@@ -3,7 +3,7 @@ import React from 'react'
 import { backendUrl, currency } from '../App';
 import { toast } from 'react-toastify';
 
-const List = () => {
+const List = ({ token }) => {
   const [list, setList] = React.useState([])
   const fetchList = async () => {
     try {
@@ -25,7 +25,11 @@ const List = () => {
   const removeProduct = async (id) => {
     try {
       console.log("Removing product with ID:", id);
-      const response = await axios.delete(`${backendUrl}/api/product/remove/${id}`);
+      const response = await axios.delete(`${backendUrl}/api/product/remove/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       const data = await response.data;
       console.log("Product removed:", data);
       if (data.success) {
@@ -44,7 +48,7 @@ const List = () => {
     <>
       <p className='mb-2'>List of Products</p>
       <div className='flex flex-col  gap-2'>
-        <div className='hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border bg-gray-100 gap-2  text-sm'>
+        <div className=' md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border bg-gray-100 gap-2  text-sm'>
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
@@ -53,11 +57,9 @@ const List = () => {
 
         </div>
         {list.map((item, index) => (
-          <div key={index} className='grid md:grid-cols-[1fr_3fr_1fr] grid-cols-[1fr_3fr_1fr_1fr_1fr] gap-2 items-center py-1 px-2 border text-sm'>
+          <div key={index} className=' md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border bg-gray-100 gap-2 text-sm'>
 
             <img className='w-12' src={item.image[0]} alt={item.name} />
-            <p className='text-xl font-semibold mt-2'>{item._id}</p>
-
             <p className='text-xl font-semibold mt-2'>{item.name}</p>
             <p className='text-gray-600 mt-1'>Category: {item.category}</p>
             <p className='text-gray-600 mt-1'>{currency}{item.price}</p>

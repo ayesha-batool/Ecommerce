@@ -22,12 +22,11 @@ const registerUser = async (req, res) => {
         }
         //hash user password
         const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password, salt);
-
+     
         const newUser = new userModel({
             name,
             email,
-            password: hashedPassword
+            password: password
         });
         const user = await newUser.save();
         const token = createToken(user._id);
@@ -42,16 +41,19 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log("loginUser",email,password);
         const user = await userModel.findOne({ email });
         if (!user) {
             return res.json({ success: false, message: "User not found" });
         }
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            const token = createToken(user._id);
-            return res.json({ success: true, token });
+        // const isMatch = await bcrypt.compare(password, user.password);
+        console.log("user.password",user.password);
+        console.log("password",password);
+        if (user.password !== password) {
+            return res.json({ success: false, message: "Invalid password" });
         }
-        res.json({ success: true, message: "Login successful" });
+        const token = createToken(user._id);
+        res.json({ success: true, token });
     } catch (error) {
         console.error("Error logging in user:", error);
         res.status(500).json({ success: false, message: "Internal server error" });
@@ -66,6 +68,7 @@ const adminLogin = async (req, res) => {
         const { email, password } = req.body;
         console.log("Admin login attempt with:", { email, password });
         if (email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWORD) {
+            console.log(email,password,process.env.ADMIN_EMAIL,process.env.ADMIN_PASSWORD)
             return res.status(401).json({ success: false, message: "Invalid admin credentials" });
         }
         

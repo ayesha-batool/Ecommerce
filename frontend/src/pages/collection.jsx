@@ -28,44 +28,46 @@ export const Collection = () => {
     }
   }
 
-  const applyFilters = () => {
+  const applyFiltersAndSort = () => {
     let productsCopy = [...products];
+    
+    // Apply search filter
     if (showSearch && search) {
       productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
     }
+    
+    // Apply category filter
     if (category.length > 0) {
       productsCopy = productsCopy.filter(item => category.includes(item.category));
     }
+    
+    // Apply subcategory filter
     if (subCategory.length > 0) {
       productsCopy = productsCopy.filter(item => subCategory.includes(item.subcategory));
     }
+    
+    console.log("productsCopy after filters", productsCopy);
+    
+    // Apply sorting
+    if (sortType === 'lowToHigh') {
+      productsCopy.sort((a, b) => a.price - b.price);
+    } else if (sortType === 'highToLow') {
+      productsCopy.sort((a, b) => b.price - a.price);
+    }
+    // For 'relevent', no sorting needed
+    
+    console.log("final productsCopy", productsCopy);
     setFilterProducts(productsCopy);
   }
- 
-  const sortProducts = () => {
-    let sortedProducts = [...filterProducts];
-    if (sortType === 'lowToHigh') {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (sortType === 'highToLow') {
-      sortedProducts.sort((a, b) => b.price - a.price);
-    } else if (sortType === 'relevent') {
-      // No sorting needed for relevant
-    }
-    setFilterProducts(sortedProducts);
-  }
-useEffect(() => {
-  setFilterProducts(products);
-}, []);
-  useEffect(() => {
-    applyFilters();
-  }, [ , showSearch, search, category, subCategory]);
 
   useEffect(() => {
-    sortProducts();
-  }, [sortType]);
+    console.log("products changed:", products);
+    applyFiltersAndSort();
+  }, [products, showSearch, search, category, subCategory, sortType]);
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* filter options */}
+   
       <div className='min-w-60'>
         <p onClick={()=>setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS
           <img src={assets.dropdown_icon} className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''} `} alt="" />
@@ -92,13 +94,13 @@ useEffect(() => {
 
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'Men'} name="" id="" onChange={toggleSubCategory} />Topwear
+              <input type="checkbox" className='w-3' value={'Topwear'} name="" id="" onChange={toggleSubCategory} />Topwear
             </p>
             <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'Women'} name="" id="" onChange={toggleSubCategory} />Bottomwear
+              <input type="checkbox" className='w-3' value={'Bottomwear'} name="" id="" onChange={toggleSubCategory} />Bottomwear
             </p>
             <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'Kids'} name="" id="" onChange={toggleSubCategory} />Winterwear
+              <input type="checkbox" className='w-3' value={'Winterwear'} name="" id="" onChange={toggleSubCategory} />Winterwear
             </p>
           </div> 
         </div>
@@ -115,7 +117,7 @@ useEffect(() => {
         </div>
         <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'>
           {filterProducts.map(item => (
-            <ProductItem key={item.id} data={item} />
+            <ProductItem key={item._id} data={item} />
           ))}
         </div>
       </div>
