@@ -49,6 +49,7 @@ app.use(cors({
     'http://localhost:5173', 
     'http://localhost:5174',
     'https://ecommerceadmin-mu.vercel.app',
+    'https://ecommerceadmin-7f5yjf9fn-ayesha-batools-projects.vercel.app',
     'https://ecommercebackend-tan.vercel.app'
   ],
   credentials: true,
