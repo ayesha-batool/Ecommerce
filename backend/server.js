@@ -8,14 +8,21 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Load .env file from the backend directory
-dotenv.config({ path: path.join(__dirname, '.env') })
+// Load .env file from the backend directory (if it exists)
 import fs from "fs";
 
 const envPath = path.join(__dirname, ".env");
 console.log("Looking for .env at:", envPath);
 console.log("File exists?", fs.existsSync(envPath));
-console.log("Raw .env content:\n", fs.readFileSync(envPath, "utf-8"));
+
+// Only load .env file if it exists (for local development)
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+  console.log("Raw .env content:\n", fs.readFileSync(envPath, "utf-8"));
+} else {
+  console.log("No .env file found, using environment variables from Vercel/system");
+}
+
 console.log("PORT:", process.env.PORT);
 console.log("JWT_SECRET:", process.env.JWT_SECRET);
 console.log("MONGODB_URI:", process.env.MONGODB_URI);
@@ -38,7 +45,12 @@ connectCloudinary()
 
 // ✅ CORS middleware (must be before routes)
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:5174',
+    'https://ecommerceadmin-mu.vercel.app',
+    'https://ecommercebackend-tan.vercel.app'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'token']
