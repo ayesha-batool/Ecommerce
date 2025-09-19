@@ -24,44 +24,44 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4">
           <Link to="/" className="flex items-center space-x-3">
-             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">StyleHub</span>
+             <span className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">StyleHub</span>
           </Link>
           
           <ul className="hidden md:flex items-center space-x-8">
             <NavLink 
               to="/" 
-              className="relative text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 group"
+              className="relative text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 group"
             >
               Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
             </NavLink>
             <NavLink 
               to="/collection" 
-              className="relative text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 group"
+              className="relative text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 group"
             >
               Collection
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
             </NavLink>
             <NavLink 
               to="/about" 
-              className="relative text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 group"
+              className="relative text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 group"
             >
               About
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
             </NavLink>
             <NavLink 
               to="/contact" 
-              className="relative text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 group"
+              className="relative text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 group"
             >
               Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
             </NavLink>
           </ul>
           <div className="flex items-center space-x-4">
             {/* Search Icon */}
             <button
               onClick={(e) => setShowSearch(true)}
-              className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200"
+              className="p-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-all duration-200"
             >
               <img src={assets.search_icon} className="w-5 h-5" alt="Search" />
             </button>
@@ -70,7 +70,7 @@ export const Navbar = () => {
             <div className="relative group">
               <button
                 onClick={() => (token ? null : navigate("/login"))}
-                className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200"
+                className="p-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-all duration-200"
               >
                 <img src={assets.profile_icon} className="w-5 h-5" alt="Profile" />
               </button>
@@ -99,10 +99,10 @@ export const Navbar = () => {
             </div>
             
             {/* Cart */}
-            <Link to="/cart" className="relative p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200">
+            <Link to="/cart" className="relative p-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-all duration-200">
               <img src={assets.cart_icon} className="w-5 h-5" alt="Cart" />
               {getCartCount() > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {getCartCount()}
                 </span>
               )}
@@ -111,7 +111,7 @@ export const Navbar = () => {
             {/* Mobile Menu */}
             <button
               onClick={() => setVisible(true)}
-              className="md:hidden p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200"
+              className="md:hidden p-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-all duration-200"
             >
               <img src={assets.menu_icon} className="w-5 h-5" alt="Menu" />
             </button>

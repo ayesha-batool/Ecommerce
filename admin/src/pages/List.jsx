@@ -45,30 +45,73 @@ const List = ({ token }) => {
     fetchList();
   }, []);
   return (
-    <>
-      <p className='mb-2'>List of Products</p>
-      <div className='flex flex-col  gap-2'>
-        <div className=' md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border bg-gray-100 gap-2  text-sm'>
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b className='text-center'>Action</b>
-
-        </div>
-        {list.map((item, index) => (
-          <div key={index} className=' md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border bg-gray-100 gap-2 text-sm'>
-
-            <img className='w-12' src={item.image[0]} alt={item.name} />
-            <p className='text-xl font-semibold mt-2'>{item.name}</p>
-            <p className='text-gray-600 mt-1'>Category: {item.category}</p>
-            <p className='text-gray-600 mt-1'>{currency}{item.price}</p>
-            <p className='text-right md:text-center cursor-pointer text-lg' onClick={() => removeProduct(item._id)}>X</p>
-
+    <div className="bg-gradient-to-br from-orange-50 to-pink-50 min-h-screen p-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-8">Product Management</h1>
+          <p className="text-gray-600 mb-8">Manage your product inventory and view all available items.</p>
+          
+          <div className="overflow-x-auto">
+            <div className="min-w-full">
+              {/* Header */}
+              <div className="grid grid-cols-12 gap-4 py-4 px-6 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-t-xl font-semibold">
+                <div className="col-span-2">Image</div>
+                <div className="col-span-4">Product Name</div>
+                <div className="col-span-2">Category</div>
+                <div className="col-span-2">Price</div>
+                <div className="col-span-2 text-center">Actions</div>
+              </div>
+              
+              {/* Product Rows */}
+              {list.map((item, index) => (
+                <div 
+                  key={index} 
+                  className={`grid grid-cols-12 gap-4 py-6 px-6 border-b border-gray-200 hover:bg-orange-50 transition-colors ${
+                    index === list.length - 1 ? 'rounded-b-xl' : ''
+                  }`}
+                >
+                  <div className="col-span-2">
+                    <img 
+                      className="w-16 h-16 object-cover rounded-lg shadow-sm" 
+                      src={item.image[0]} 
+                      alt={item.name} 
+                    />
+                  </div>
+                  <div className="col-span-4">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1">{item.name}</h3>
+                    <p className="text-sm text-gray-600 line-clamp-2">{item.description}</p>
+                  </div>
+                  <div className="col-span-2">
+                    <span className="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
+                      {item.category}
+                    </span>
+                  </div>
+                  <div className="col-span-2">
+                    <span className="text-xl font-bold text-gray-800">{currency}{item.price}</span>
+                  </div>
+                  <div className="col-span-2 text-center">
+                    <button
+                      onClick={() => removeProduct(item._id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 transform hover:scale-105"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+              
+              {list.length === 0 && (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 text-6xl mb-4">📦</div>
+                  <h3 className="text-xl font-semibold text-gray-600 mb-2">No Products Found</h3>
+                  <p className="text-gray-500">Start by adding your first product to the inventory.</p>
+                </div>
+              )}
+            </div>
           </div>
-        ))}
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 
