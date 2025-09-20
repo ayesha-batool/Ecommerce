@@ -7,12 +7,7 @@ const Sidebar = () => {
   return (
     <div className="w-[20%] min-h-screen bg-gradient-to-b from-orange-100 to-pink-100 border-r-2 border-orange-200">
       <div className="p-6">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-            StyleHub Admin
-          </h2>
-          <p className="text-sm text-gray-600 mt-1">Management Dashboard</p>
-        </div>
+        
         
         <div className="flex flex-col gap-3">
           <NavLink
