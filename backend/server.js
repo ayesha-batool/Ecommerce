@@ -50,7 +50,9 @@ app.use(cors({
     'http://localhost:5174',
     'https://ecommerceadmin-mu.vercel.app',
     'https://ecommerceadmin-7f5yjf9fn-ayesha-batools-projects.vercel.app',
-    'https://ecommercebackend-tan.vercel.app'
+    'https://ecommerceadmin-tan.vercel.app',
+    'https://ecommercebackend-tan.vercel.app',
+    'https://ecommercebackend-tawny.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
