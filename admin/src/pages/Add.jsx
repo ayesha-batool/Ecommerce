@@ -57,14 +57,13 @@ const Add = ({ token }) => {
     formData.append("sizes", JSON.stringify(sizes));
     formData.append("bestseller", bestseller);
 
-
-          try {
-        const res = await axios.post(backendUrl + "/api/product/add", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`
-          },
-        });
+    try {
+      const res = await axios.post(backendUrl + "/api/product/add", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (res.data.success) {
         toast.success("Product added successfully");
       } else {
@@ -87,14 +86,18 @@ const Add = ({ token }) => {
     <div className="bg-gradient-to-br from-orange-50 to-pink-50 min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Add New Product</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+            Add New Product
+          </h1>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col w-full items-start gap-6"
           >
             <div className="w-full">
-              <p className="mb-4 text-lg font-semibold text-gray-700">Upload Product Images</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <p className="mb-4 text-lg font-semibold text-gray-700">
+                Upload Product Images
+              </p>
+              <div className="flex flex-wrap gap-4">
                 <label
                   className="relative cursor-pointer group"
                   htmlFor="image1"
@@ -103,7 +106,11 @@ const Add = ({ token }) => {
                     <img
                       className="w-full h-full object-cover rounded-xl"
                       alt="Upload Image 1"
-                      src={!image1 ? assets.upload_area : URL.createObjectURL(image1)}
+                      src={
+                        !image1
+                          ? assets.upload_area
+                          : URL.createObjectURL(image1)
+                      }
                     />
                   </div>
                   <input
@@ -122,7 +129,11 @@ const Add = ({ token }) => {
                     <img
                       className="w-full h-full object-cover rounded-xl"
                       alt="Upload Image 2"
-                      src={!image2 ? assets.upload_area : URL.createObjectURL(image2)}
+                      src={
+                        !image2
+                          ? assets.upload_area
+                          : URL.createObjectURL(image2)
+                      }
                     />
                   </div>
                   <input
@@ -141,7 +152,11 @@ const Add = ({ token }) => {
                     <img
                       className="w-full h-full object-cover rounded-xl"
                       alt="Upload Image 3"
-                      src={!image3 ? assets.upload_area : URL.createObjectURL(image3)}
+                      src={
+                        !image3
+                          ? assets.upload_area
+                          : URL.createObjectURL(image3)
+                      }
                     />
                   </div>
                   <input
@@ -160,7 +175,11 @@ const Add = ({ token }) => {
                     <img
                       className="w-full h-full object-cover rounded-xl"
                       alt="Upload Image 4"
-                      src={!image4 ? assets.upload_area : URL.createObjectURL(image4)}
+                      src={
+                        !image4
+                          ? assets.upload_area
+                          : URL.createObjectURL(image4)
+                      }
                     />
                   </div>
                   <input
@@ -174,7 +193,9 @@ const Add = ({ token }) => {
               </div>
             </div>
             <div className="w-full">
-              <label className="block text-lg font-semibold text-gray-700 mb-2">Product Name</label>
+              <label className="block text-lg font-semibold text-gray-700 mb-2">
+                Product Name
+              </label>
               <input
                 className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                 type="text"
@@ -185,7 +206,9 @@ const Add = ({ token }) => {
               />
             </div>
             <div className="w-full">
-              <label className="block text-lg font-semibold text-gray-700 mb-2">Product Description</label>
+              <label className="block text-lg font-semibold text-gray-700 mb-2">
+                Product Description
+              </label>
               <textarea
                 className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
                 rows="4"
@@ -197,7 +220,9 @@ const Add = ({ token }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
               <div>
-                <label className="block text-lg font-semibold text-gray-700 mb-2">Category</label>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">
+                  Category
+                </label>
                 <select
                   onChange={(e) => setcategory(e.target.value)}
                   className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
@@ -210,7 +235,9 @@ const Add = ({ token }) => {
                 </select>
               </div>
               <div>
-                <label className="block text-lg font-semibold text-gray-700 mb-2">Sub Category</label>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">
+                  Sub Category
+                </label>
                 <select
                   onChange={(e) => setSubCategory(e.target.value)}
                   className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
@@ -223,7 +250,9 @@ const Add = ({ token }) => {
                 </select>
               </div>
               <div>
-                <label className="block text-lg font-semibold text-gray-700 mb-2">Price ($)</label>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">
+                  Price ($)
+                </label>
                 <input
                   className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   type="number"
@@ -235,7 +264,9 @@ const Add = ({ token }) => {
               </div>
             </div>
             <div className="w-full">
-              <label className="block text-lg font-semibold text-gray-700 mb-4">Available Sizes</label>
+              <label className="block text-lg font-semibold text-gray-700 mb-4">
+                Available Sizes
+              </label>
               <div className="flex flex-wrap gap-3">
                 {["S", "M", "L", "XL", "XXL"].map((size) => (
                   <div
@@ -262,7 +293,7 @@ const Add = ({ token }) => {
                 ))}
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3 p-4 bg-orange-50 rounded-xl">
               <input
                 onChange={() => setBestseller((prev) => !prev)}
@@ -271,12 +302,15 @@ const Add = ({ token }) => {
                 id="bestseller"
                 className="w-5 h-5 text-orange-500 rounded focus:ring-orange-500"
               />
-              <label className="cursor-pointer text-lg font-medium text-gray-700" htmlFor="bestseller">
+              <label
+                className="cursor-pointer text-lg font-medium text-gray-700"
+                htmlFor="bestseller"
+              >
                 Mark as Best Seller
               </label>
             </div>
-            
-            <button 
+
+            <button
               type="submit"
               className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:from-orange-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
