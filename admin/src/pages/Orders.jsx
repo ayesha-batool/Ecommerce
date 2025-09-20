@@ -52,7 +52,7 @@ const Orders = ({ token }) => {
 
   return (
     <div>
-      <h3>Order Page</h3>
+     
       <div>
         {console.log("orders", orders)}
         {orders.map((order, index) => (
