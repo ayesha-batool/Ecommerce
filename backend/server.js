@@ -51,6 +51,7 @@ app.use(cors({
     'https://ecommerceadmin-mu.vercel.app',
     'https://ecommerceadmin-7f5yjf9fn-ayesha-batools-projects.vercel.app',
     'https://ecommerceadmin-tan.vercel.app',
+    'https://ecommerceadmin-nu.vercel.app',
     'https://ecommercebackend-tan.vercel.app',
     'https://ecommercebackend-tawny.vercel.app'
   ],
