@@ -1,13 +1,8 @@
 import multer from "multer";
 
-const storage = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, './uploads/');
-    },
-    filename: (req, file, callback) => {
-        callback(null, file.originalname);
-    }
-});
+// Use memory storage for Vercel serverless functions
+// Vercel doesn't support persistent file storage, so we use memory storage
+const storage = multer.memoryStorage();
 
 const upload = multer({ 
     storage,
@@ -18,6 +13,9 @@ const upload = multer({
         } else {
             callback(new Error('Only image files are allowed!'), false);
         }
+    },
+    limits: {
+        fileSize: 10 * 1024 * 1024, // 10MB limit
     }
 })
 

@@ -22,9 +22,24 @@ const addProduct = async (req, res) => {
         if (images.length > 0) {
             imageUrls = await Promise.all(images.map(async (image, index) => {
                 console.log(`Uploading image ${index + 1}:`, image.originalname);
-                const result = await cloudinary.uploader.upload(image.path, { resource_type: "image" });
-                console.log(`Image ${index + 1} uploaded:`, result.secure_url);
-                return result.secure_url;
+                
+                // For memory storage, use image.buffer instead of image.path
+                const uploadResult = await new Promise((resolve, reject) => {
+                    cloudinary.uploader.upload_stream(
+                        { resource_type: "image" },
+                        (error, result) => {
+                            if (error) {
+                                console.error(`Error uploading image ${index + 1}:`, error);
+                                reject(error);
+                            } else {
+                                resolve(result);
+                            }
+                        }
+                    ).end(image.buffer);
+                });
+                
+                console.log(`Image ${index + 1} uploaded:`, uploadResult.secure_url);
+                return uploadResult.secure_url;
             }));
         }
 
