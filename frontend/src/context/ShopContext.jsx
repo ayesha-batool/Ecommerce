@@ -158,12 +158,13 @@ const ShopContextProvider = (props) => {
     getProductsData();
   }, []);
   useEffect(() => {
-    if (!token && localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
-      setToken(token);
-      getUserCart(token);
+    // Initialize token from localStorage on app start
+    const savedToken = localStorage.getItem("token");
+    if (savedToken && !token) {
+      setToken(savedToken);
+      getUserCart(savedToken);
     }
-  }, [token]);
+  }, []); // Empty dependency array - run only once on mount
 
   const value = {
     products,
