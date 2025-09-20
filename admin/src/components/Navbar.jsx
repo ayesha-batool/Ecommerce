@@ -8,7 +8,7 @@ const Navbar = ({setToken}) => {
 
     return (
         <div className='flex justify-between items-center  px-[4%] py-2 '>
-          <div className="mb-3">
+          <div className="">
           <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
             StyleHub Admin
           </h2>
