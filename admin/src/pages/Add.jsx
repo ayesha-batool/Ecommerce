@@ -8,11 +8,11 @@ const Add = ({ token }) => {
   const [image2, setImage2] = React.useState(null);
   const [image3, setImage3] = React.useState(null);
   const [image4, setImage4] = React.useState(null);
-  const [name, setName] = React.useState("sada");
-  const [description, setdescription] = React.useState("asd");
-  const [category, setcategory] = React.useState("Men");
-  const [subCategory, setSubCategory] = React.useState("Topwear");
-  const [price, setprice] = React.useState("123");
+  const [name, setName] = React.useState("");
+  const [description, setdescription] = React.useState("");
+  const [category, setcategory] = React.useState("");
+  const [subCategory, setSubCategory] = React.useState("");
+  const [price, setprice] = React.useState("");
   const [sizes, setSizes] = React.useState([]);
   const [bestseller, setBestseller] = React.useState(false);
 
