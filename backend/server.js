@@ -48,11 +48,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173', 
     'http://localhost:5174',
-    'https://ecommerceadmin-mu.vercel.app',
-    'https://ecommerceadmin-7f5yjf9fn-ayesha-batools-projects.vercel.app',
-    'https://ecommerceadmin-tan.vercel.app',
     'https://ecommerceadmin-nu.vercel.app',
-    'https://ecommercebackend-tan.vercel.app',
+    'https://ecommercefrontend-phi.vercel.app',
     'https://ecommercebackend-tawny.vercel.app'
   ],
   credentials: true,
